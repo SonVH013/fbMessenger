@@ -8,9 +8,36 @@
 
 import UIKit
 
+class Friend: NSObject {
+    var name: String?
+    var imageProfileName: String?
+}
+
+class Message: NSObject {
+    var mess: String?
+    var date: Date?
+    
+    var friend: Friend?
+}
+
 class FriendsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private let cellID = "cellID"
+    
+    var messages: [Message]?
+    
+    func setupData() {
+        let mark = Friend()
+        mark.name = "Mark Zugkeberg"
+        mark.imageProfileName = "zuckprofile"
+        
+        let message = Message()
+        message.mess = "My name is Mark, nice to meet you !"
+        message.date = Date()
+        message.friend = mark
+        
+        messages = [message]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +45,24 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
         navigationItem.title = "Recent"
         collectionView?.backgroundColor = UIColor.white
         collectionView?.alwaysBounceVertical = true
-        collectionView?.register(FriendCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView?.register(MessageCell.self, forCellWithReuseIdentifier: cellID)
+        
+        setupData()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        if let count = messages?.count {
+            return count
+        }
+        return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MessageCell
+        if let message = messages?[indexPath.item] {
+            cell.message = message
+        }
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -34,7 +70,25 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
     }
 }
 
-class FriendCell: BaseCell {
+class MessageCell: BaseCell {
+    
+    var message: Message? {
+        didSet {
+            nameLabel.text = message?.friend?.name
+            
+            if let profileImageName = message?.friend?.imageProfileName {
+                profileImageView.image = UIImage(named: profileImageName)
+            }
+            
+            messLabel.text = message?.mess
+            
+            if let date = message?.date {
+                let format = DateFormatter()
+                format.dateFormat = "h:mm a"
+                timeLabel.text = format.string(from: date)
+            }
+        }
+    }
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
