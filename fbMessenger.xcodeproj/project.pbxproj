@@ -18,6 +18,7 @@
 		9056A26F20D9E57700CE26E1 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9056A26B20D9E57700CE26E1 /* Friend.swift */; };
 		9056A27020D9E57700CE26E1 /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9056A26C20D9E57700CE26E1 /* Friend+CoreDataProperties.swift */; };
 		9056A27220DA0B8700CE26E1 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9056A27120DA0B8700CE26E1 /* ChatLogController.swift */; };
+		9056A27420DA2DD100CE26E1 /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9056A27320DA2DD100CE26E1 /* CustomTabbarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		9056A26B20D9E57700CE26E1 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		9056A26C20D9E57700CE26E1 /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9056A27120DA0B8700CE26E1 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		9056A27320DA2DD100CE26E1 /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				2C950FB820D9555D00263FFF /* AppDelegate.swift */,
 				2C950FBA20D9555D00263FFF /* ViewController.swift */,
 				9056A27120DA0B8700CE26E1 /* ChatLogController.swift */,
+				9056A27320DA2DD100CE26E1 /* CustomTabbarController.swift */,
 				9056A25B20D9E06F00CE26E1 /* FriendsViewControllerHelper.swift */,
 				2C950FC220D9555E00263FFF /* Assets.xcassets */,
 				2C950FC420D9555E00263FFF /* LaunchScreen.storyboard */,
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9056A27420DA2DD100CE26E1 /* CustomTabbarController.swift in Sources */,
 				9056A27220DA0B8700CE26E1 /* ChatLogController.swift in Sources */,
 				2C950FBB20D9555D00263FFF /* ViewController.swift in Sources */,
 				2C950FC120D9555D00263FFF /* fbMessenger.xcdatamodeld in Sources */,
