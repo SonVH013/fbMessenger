@@ -8,36 +8,13 @@
 
 import UIKit
 
-class Friend: NSObject {
-    var name: String?
-    var imageProfileName: String?
-}
 
-class Message: NSObject {
-    var mess: String?
-    var date: Date?
-    
-    var friend: Friend?
-}
 
 class FriendsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private let cellID = "cellID"
     
     var messages: [Message]?
-    
-    func setupData() {
-        let mark = Friend()
-        mark.name = "Mark Zugkeberg"
-        mark.imageProfileName = "zuckprofile"
-        
-        let message = Message()
-        message.mess = "My name is Mark, nice to meet you !"
-        message.date = Date()
-        message.friend = mark
-        
-        messages = [message]
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +45,13 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 100)
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let layout = UICollectionViewFlowLayout()
+        let controller = ChatLogController(collectionViewLayout: layout)
+        controller.friend = messages?[indexPath.item].friend
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 class MessageCell: BaseCell {
@@ -78,6 +62,7 @@ class MessageCell: BaseCell {
             
             if let profileImageName = message?.friend?.imageProfileName {
                 profileImageView.image = UIImage(named: profileImageName)
+                hasReadImageView.image = UIImage(named: profileImageName)
             }
             
             messLabel.text = message?.mess
@@ -85,7 +70,7 @@ class MessageCell: BaseCell {
             if let date = message?.date {
                 let format = DateFormatter()
                 format.dateFormat = "h:mm a"
-                timeLabel.text = format.string(from: date)
+                timeLabel.text = format.string(from: date as Date)
             }
         }
     }
